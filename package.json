@@ -1,0 +1,17 @@
+{
+  "name": "musicmetadatajs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "build": "browserify main.js > musicMetadataBundle.js",
+    "start": "http-server --proxy http://localhost:8080?"
+  },
+  "author": "dimo.petkov@digitall.com",
+  "license": "ISC",
+  "dependencies": {
+    "browserify": "^17.0.0",
+    "http-server": "^14.1.1",
+    "music-metadata-browser": "^2.5.9"
+  }
+}

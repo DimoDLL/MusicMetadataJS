@@ -1,0 +1,43 @@
+<html>
+<head>
+    <!--https://www.npmjs.com/package/music-metadata-browser-->
+    <script type="text/javascript" src="musicMetadataBundle.js"></script>
+</head>
+<body>
+
+    <input type="file" id="filePicker">
+    </br>
+    </br>
+    <textarea id="outputTextarea" cols="40" rows="5"></textarea>
+
+    <script>
+        // Get the file input element
+        var fileInput = document.getElementById("filePicker");
+
+        // Listen for the change event on the file input element
+        fileInput.addEventListener("change", function (event) {
+            // Get the first file selected by the user
+            var file = event.target.files[0];
+
+            // Create a new FileReader object
+            var reader = new FileReader();
+
+            // Listen for the 'load' event on the FileReader
+            reader.addEventListener("load", function () {
+                // The 'result' property of the FileReader contains the file data as a ArrayBuffer
+                var arrayBuffer = this.result;
+
+                // Create a new Blob object with the file data
+                var blob = new Blob([arrayBuffer]);
+                MusicMetadata.parseBlob(blob).then(metadata => {
+                    console.log(metadata);
+                    document.getElementById("outputTextarea").value = JSON.stringify(metadata, null, 2);
+                });
+            });
+
+            // Start reading the file
+            reader.readAsArrayBuffer(file);
+        });
+    </script>
+</body>
+</html>
