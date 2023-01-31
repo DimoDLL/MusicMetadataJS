@@ -29,6 +29,7 @@
 
                 // Create a new Blob object with the file data
                 var blob = new Blob([arrayBuffer]);
+                // https://github.com/Borewit/music-metadata-browser#parseblob-function
                 MusicMetadata.parseBlob(blob).then(metadata => {
                     console.log(metadata);
                     document.getElementById("outputTextarea").value = JSON.stringify(metadata, null, 2);
